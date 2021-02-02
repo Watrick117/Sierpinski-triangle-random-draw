@@ -15,21 +15,11 @@ HEIGHT = 1080
 
 MIN = min(WIDTH,HEIGHT)
 MAX = max(WIDTH,HEIGHT)
+
 MIN10 = int(MIN / 10)
-print(f'{MIN10 = }')
 
-#screencenter = (int(WIDTH/2), int(HEIGHT/2))
 
-#Creats a list with the first the points of the trinagle
-# [x,y x,y x,y]
-# [A, B, C]
-#points = [315,446, 75,70, 548,70, 322,298]
-"""points = [
-    int(90 * MIN /100) , int(90 * MIN /100),
-    int(MIN - (90 * MIN /100)) , int(MIN - (90 * MIN /100)), 
-    int(MIN + (10 * MIN /100)) , int(MIN - (10 * MIN /100))
-]"""
-
+#Creats a list with the first three points of the trinagle
 points = [
     MIN - MIN10, MIN - MIN10,
     MAX - MIN10, 0 + MIN10,
@@ -73,32 +63,21 @@ def midpoint(one, two):
 
 def main():
 
-    #if len(points) > 6:
-
     last_point = (points[-2],points[-1])
 
-    #for i in range(0, 100): #TODO: might need to change to while loop
-
     i = 0
-    while(i < 50000):
+    while(i < 2000000):
         #Sets temp to a random number between 0 and 4
         temp = randrange(0, 5, 2)
-
-        DEBUG = [points[temp],points[temp+1]]
 
         last_point = (points[-2],points[-1])
         new_point = (midpoint(last_point[0],points[temp]),
                     midpoint(last_point[1],points[temp+1]))
 
-        DEBUG_X = points[temp]
-        DEBUG_Y = points[temp+1]
-        
         points.append(new_point[0]) # adds to x axis
         points.append(new_point[1]) # adds to y axis
 
         i += 1
-        
-    #print(points)
 
 main()
 pyglet.app.run()
